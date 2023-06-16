@@ -1,14 +1,27 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import { Breadcrumb, BreadcrumbItem, Col, Container, Row } from "reactstrap";
+import { Link } from "react-router-dom";
 
 function Contact(props) {
   return (
     <Container>
+      <Row>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to="/home">Home</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem active>Contact</BreadcrumbItem>
+        </Breadcrumb>
+        <div className="col-12">
+          <h3>Contact</h3>
+          <hr />
+        </div>
+      </Row>
       <Row className="row-content">
         <Col xs={12}>
           <h3>Location Information</h3>
         </Col>
-        <Col xs={12} sm={{size: 4, offset: 1}}>
+        <Col xs={12} sm={{ size: 4, offset: 1 }}>
           <h5>Our Address</h5>
           <address>
             121, Clear Water Bay Road
@@ -25,10 +38,10 @@ function Contact(props) {
             <a href="mailto:confusion@food.net">confusion@food.net</a>
           </address>
         </Col>
-        <Col xs={12} sm={{size: 6, offset: 1}}>
+        <Col xs={12} sm={{ size: 6, offset: 1 }}>
           <h5>Map of our Location</h5>
         </Col>
-        <Col xs={12} sm={{size: 11, offset: 1}}>
+        <Col xs={12} sm={{ size: 11, offset: 1 }}>
           <div className="btn-group" role="group">
             <a
               role="button"
