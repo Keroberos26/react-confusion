@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,44 +13,23 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-function RenderDish({ dish, comments }) {
+function RenderDish({dish}) {
   if (dish != null) {
-    var comments = RenderComments(comments);
-
     return (
-      <Container>
-        <Row>
-          <Breadcrumb>
-            <BreadcrumbItem>
-              <Link to="/menu">Menu</Link>
-            </BreadcrumbItem>
-            <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
-          </Breadcrumb>
-          <Col xs={12}>
-            <h3>{dish.name}</h3>
-            <hr />
-          </Col>
-        </Row>
-
-        <Row>
-          <Col xs={12} md={5} className="m-1">
-            <Card>
-              <CardImg top src={dish.image} alt={dish.name} />
-              <CardBody>
-                <CardTitle>{dish.name}</CardTitle>
-                <CardText>{dish.description}</CardText>
-              </CardBody>
-            </Card>
-          </Col>
-
-          {comments}
-        </Row>
-      </Container>
+      <Col xs={12} md={5} className="m-1">
+        <Card>
+          <CardImg top src={dish.image} alt={dish.name} />
+          <CardBody>
+            <CardTitle>{dish.name}</CardTitle>
+            <CardText>{dish.description}</CardText>
+          </CardBody>
+        </Card>
+      </Col>
     );
   } else return <></>;
 }
 
-function RenderComments(comments) {
+function RenderComments({comments}) {
   if (comments != null) {
     var showComments = comments.map((cmt) => {
       return (
@@ -80,7 +59,27 @@ function RenderComments(comments) {
 }
 
 const DishDetail = (props) => {
-  return RenderDish(props);
+  return (
+    <Container>
+      <Row>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to="/menu">Menu</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+        </Breadcrumb>
+        <Col xs={12}>
+          <h3>{props.dish.name}</h3>
+          <hr />
+        </Col>
+      </Row>
+
+      <Row>
+        <RenderDish dish={props.dish}/>
+        <RenderComments comments={props.comments}/>
+      </Row>
+    </Container>
+  );
 };
 
 export default DishDetail;
