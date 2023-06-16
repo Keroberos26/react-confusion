@@ -10,14 +10,11 @@ import {
   Row,
 } from "reactstrap";
 
-class DishDetail extends Component {
-  constructor(props) {
-    super(props);
-  }
 
-  renderDish(dish) {
+
+  function RenderDish({dish}) {
     if (dish != null) {
-      var comments = this.renderComments(dish.comments);
+      var comments = RenderComments(dish);
 
       return (
         <Container>
@@ -39,14 +36,19 @@ class DishDetail extends Component {
     } else return <></>;
   }
 
-  renderComments(comments) {
+  function RenderComments({comments}) {
     if (comments != null) {
       var showComments = comments.map((cmt) => {
         return (
           <li key={cmt.id}>
             <p>{cmt.comment}</p>
             <p>
-              -- {cmt.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cmt.date)))}
+              -- {cmt.author},{" "}
+              {new Intl.DateTimeFormat("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "2-digit",
+              }).format(new Date(Date.parse(cmt.date)))}
             </p>
           </li>
         );
@@ -63,10 +65,9 @@ class DishDetail extends Component {
     }
   }
 
-  render() {
-    const dish = this.renderDish(this.props.dish);
-    return dish;
+  const DishDetail = (props) => {
+    return RenderDish(props);
   }
-}
+
 
 export default DishDetail;
