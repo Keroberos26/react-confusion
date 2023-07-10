@@ -12,6 +12,7 @@ import {
   Row,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import CommentForm from "./CommentFormComponent";
 
 function RenderDish({dish}) {
   if (dish != null) {
@@ -51,6 +52,7 @@ function RenderComments({comments}) {
       <Col xs={12} md={5} className="m-1">
         <h4>Comment</h4>
         <ul className="list-unstyled">{showComments}</ul>
+        <CommentForm />
       </Col>
     );
   } else {
